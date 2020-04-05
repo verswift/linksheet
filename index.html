@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Linksheet - Bookmarking Tool</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Rounded-Button.css">
+</head>
+
+<!-- when the page/body loads the bookmarks will be fetched from local storage -->
+<body id="page-top" onload="fetchBookmarks()">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="background-color: #ffffff;">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow-sm mb-4 topbar static-top">
+                    <div class="container-fluid">
+                        <h3 class="text-center text-dark mb-0">Linksheet</h3>
+                        <ul class="nav navbar-nav flex-nowrap ml-auto">
+                            <li class="nav-item dropdown no-arrow" role="presentation">
+                              <!-- removed show to prevent dropdown appearing -->
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="https://verswift.com"><img class="border rounded-circle img-profile" src="assets/img/verswift-color.png"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"
+                                        role="menu"><a class="dropdown-item" role="presentation" href="https://verswift.com">Back To Verswift</a></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <div class="text-center d-sm-flex justify-content-between align-items-center justify-content-xl-center mb-4"></div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow-sm border-left-primary py-2">
+                                <div class="card-body">
+                                  <!-- entry fields that are used to enter the web addresses - will turn into forms -->
+                                  <!-- added div class of form group to the form -->
+                                  <form id = add_site>
+                                    <div class="row align-items-center no-gutters form-group">
+                                        <div class="col-xl-5 d-flex justify-content-center" style="padding: 10px;"><input class="bg-white border rounded shadow-sm" id ="siteName" type="text" name="Site Name" placeholder="Site Name " style="width: 400px;"></div>
+                                        <div class="col-xl-5 d-flex justify-content-center" style="padding: 10px;"><input class="border rounded shadow-sm" id ="siteURL" type="text" name="Site URL" placeholder="Site URL" style="width: 400px;"></div>
+                                        <div class="col-xl-1 d-flex justify-content-center align-items-center mr-2"><button class="btn btn-primary bg-secondary border-secondary shadow-sm save" type="submit" style="background-color: #c5c5c5;">SAVE</button></div>
+                                    </div>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 20px;"></div>
+
+                    <!-- section for the site entries -->
+                    <!-- need a parent div for the row so that the formatting works -->
+                    <div>
+                    <!--<div class="row"> -->
+                      <!-- example of desired output -->
+                      <!--
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow-sm border-left-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col-auto"><a class="btn btn-danger bg-secondary border-secondary btn-circle ml-1" role="button"><i class="fas fa-trash text-white"></i></a></div>
+                                        <div class="col mr-2">
+                                            <div class="text-dark d-xl-flex justify-content-xl-center align-items-xl-center font-weight-bold h5 mb-0"><span class="text-center d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center">Facebook</span></div>
+                                        </div>
+                                        <div class="col-auto"><a class="btn btn-success bg-secondary border-secondary btn-circle ml-1" role="button"><i class="fas fa-globe-americas text-white"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      -->
+                        <!-- assuming that the javascript script loads the new entries within the row -->
+                        <div class="row" id="bookmarksResults"></div>
+                  <!--  </div> -->
+                    <!--
+                      bootstrap studio provides a version of jquery so if not
+                      ideal then comment out these lines to use that
+                    -->
+                    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+                    <!-- import the script containing the app logic -->
+                    <script src="assets/js/main.js"></script>
+                  </div>
+                    <!-- end of site entries section -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow-sm border-left-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span style="font-size: 15px;">About&nbsp;</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span style="font-size: 16px;font-weight: normal;">Linksheet is a convenient way to make local browser bookmarks with a minimalist interface.
+                                              It works by using your browser's local storage so nothing is written to our servers and your privacy is maintained. It can be used for many different things such as for quicklinks to your
+                                              favourite websites for each of your devices, Reminders and Notifiers with links to the relevant web content and many more. Click the globe to visit the inputted site and the trash can to delete.
+                                              This is the first release so was kept simple feature wise. If you have any feedback or suggestions for this application, please visit the main website using the verswift icon in the navbar
+                                              and fill out the contact form on the homepage. Enjoy, and don't forget to check out our other apps. 
+                                            </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Verswift 2020</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+
+
+
+    <!-- firebase stuff ___________________________________________________-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyASWaJ62EdRvfCT2zD0OvRR4K3ht5Ox21s",
+    authDomain: "linksheet.firebaseapp.com",
+    databaseURL: "https://linksheet.firebaseio.com",
+    projectId: "linksheet",
+    storageBucket: "linksheet.appspot.com",
+    messagingSenderId: "628362614509",
+    appId: "1:628362614509:web:fda6cc50a3c6c4232fdee4",
+    measurementId: "G-7B5CEHZXQT"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+</body>
+
+</html>
